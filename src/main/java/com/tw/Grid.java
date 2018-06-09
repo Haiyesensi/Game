@@ -15,7 +15,7 @@ public class Grid {
 
     public Grid(Cell[][] gridCell) {
 
-        if(gridCell == null || gridCell.length == 0){
+        if (gridCell == null || gridCell.length == 0) {
             throw new InputInvalidException("input is null or length == 0 !");
         }
         this.height = gridCell.length;

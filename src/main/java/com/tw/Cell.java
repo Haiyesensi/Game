@@ -41,9 +41,12 @@ public class Cell {
 
     @Override
     public String toString() {
+        String result = "";
         if(status == 0){
-            return " ";
+            result = " ";
+        }else {
+            result = "#";
         }
-        return String.valueOf(status);
+        return result;
     }
 }

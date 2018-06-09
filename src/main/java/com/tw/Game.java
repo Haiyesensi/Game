@@ -12,7 +12,9 @@ public class Game {
         }
         Grid grid = new Grid(h, w);
         while (true) {
+            System.out.println("----------");
             System.out.print(grid);
+            System.out.println("----------");
             grid.nextGenerator();
             Thread.sleep(sleeptime);
         }
