@@ -94,7 +94,7 @@ public class GridTest {
     public void init_grid_and_cell_test() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                System.out.print(grid.gridCell[i][j].status +" ");
+                System.out.print(grid.gridCell[i][j].getStatus() +" ");
             }
             System.out.println();
         }

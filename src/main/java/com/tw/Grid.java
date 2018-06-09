@@ -28,16 +28,6 @@ public class Grid {
         this.gridCell = gridCell;
     }
 
-    public Cell[][] CellCopy(Cell[][] gridCell){
-        Cell[][] tempGridCell = new Cell[gridCell.length][gridCell[0].length];
-        for (int i = 0; i < gridCell.length; i++) {
-            for (int j = 0; j < gridCell[0].length; j++) {
-                tempGridCell[i][j] = new Cell(gridCell[i][j].status);
-            }
-        }
-        return tempGridCell;
-    }
-
     private void initGrid() {
         Random random = new Random();
         gridCell = new Cell[height][width];
@@ -49,20 +39,28 @@ public class Grid {
     }
 
     public void nextGenerator() {
-        Cell[][] tempGridCell = CellCopy(gridCell);
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
                 int liveNumbers = getLiveNumber(i, j);
-                if (liveNumbers < 2 || liveNumbers > 3) {
-                    tempGridCell[i][j].status = 0;
-                } else if (liveNumbers == 3) {
-                    tempGridCell[i][j].status = 1;
-                }
+                gridCell[i][j].setLiveNeighborCount(liveNumbers);
             }
         }
         System.out.println(print(gridCell));
-        setGridCell(tempGridCell);
+        updateStatus();
         System.out.println(print(gridCell));
+    }
+
+    public void updateStatus() {
+        for (int i = 0; i < gridCell.length; i++) {
+            for (int j = 0; j < gridCell[0].length; j++) {
+                int liveNumbers = gridCell[i][j].getLiveNeighborCount();
+                if (liveNumbers < 2 || liveNumbers > 3) {
+                    gridCell[i][j].setStatus(0);
+                } else if (liveNumbers == 3) {
+                    gridCell[i][j].setStatus(1);
+                }
+            }
+        }
     }
 
     public int getLiveNumber(int x, int y) {
@@ -73,7 +71,7 @@ public class Grid {
                     continue;
                 }
                 System.out.println(width + " " + height + " " + (i + x) + " " + (j + y));
-                if (gridCell[x + i][y + j].status == 1) {
+                if (gridCell[x + i][y + j].getStatus() == 1) {
                     count++;
                 }
             }

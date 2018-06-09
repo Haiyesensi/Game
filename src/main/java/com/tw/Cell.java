@@ -3,8 +3,26 @@ package com.tw;
 import java.util.Objects;
 
 public class Cell {
-    public int status;
-    public Cell(int status){
+    private int status;
+    private int liveNeighborCount;
+
+    public Cell(int status) {
+        this.status = status;
+    }
+
+    public int getLiveNeighborCount() {
+        return liveNeighborCount;
+    }
+
+    public void setLiveNeighborCount(int liveNeighborCount) {
+        this.liveNeighborCount = liveNeighborCount;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
         this.status = status;
     }
 
