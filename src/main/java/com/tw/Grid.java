@@ -1,22 +1,18 @@
 package com.tw;
 
 public class Grid {
-    public int width;
-    public int height;
 
-    //    public Grid(int w, int h){
-//        this.width = w;
-//        this.height = h;
-//    }
     public int[][] nextGenerator(int[][] input) {
-        int[][] result = input;
+        int[][] result = new int[input.length][input[0].length];
         for (int i = 0; i < input.length; i++) {
             for (int j = 0; j < input[0].length; j++) {
                 int liveNumbers = getLiveNumber(input, i, j);
-                if(liveNumbers < 2 || liveNumbers > 3){
+                if (liveNumbers < 2 || liveNumbers > 3) {
                     result[i][j] = 0;
-                }else if(liveNumbers == 3){
+                } else if (liveNumbers == 3) {
                     result[i][j] = 1;
+                } else {
+                    result[i][j] = input[i][j];
                 }
             }
         }

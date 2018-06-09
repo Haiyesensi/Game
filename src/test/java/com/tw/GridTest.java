@@ -48,4 +48,13 @@ public class GridTest {
         assertEquals(grid.getLiveNumber(input, 0, 2), expectedResult);
     }
 
+
+    @Test
+    public void should_update_bigger_grid_successfully() {
+        int input[][] = {{0, 1, 1, 0}, {1, 1, 0, 0}, {0, 0, 1, 1}};
+        int output[][] = {{1, 1, 1, 0}, {1, 0, 0, 1}, {0, 1, 1, 0}};
+        assertArrayEquals(output, grid.nextGenerator(input));
+
+    }
+
 }
