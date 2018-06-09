@@ -1,6 +1,5 @@
 package com.tw;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Grid {
@@ -15,6 +14,10 @@ public class Grid {
     }
 
     public Grid(Cell[][] gridCell) {
+
+        if(gridCell == null || gridCell.length == 0){
+            throw new InputInvalidException("input is null or length == 0 !");
+        }
         this.height = gridCell.length;
         this.width = gridCell[0].length;
         this.gridCell = gridCell;

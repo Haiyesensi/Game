@@ -2,11 +2,12 @@ package com.tw;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class GridTest {
-    int height = 10;
-    int width = 10;
+    int height = 0;
+    int width = 0;
     private Grid grid = new Grid(height, width);
 
 
