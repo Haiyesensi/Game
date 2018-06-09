@@ -15,12 +15,6 @@ public class GridTest {
 
     }
 
-//    @Test
-//    public void shoule_return_left_top_live_numbers_successfully(){
-//        int input[][] = {{0,0,0},{0,1,0},{0,1,0}};
-//        int expectedResult = 1;
-//        assertEquals(grid.getLiveNumber(input, 0, 0),expectedResult);
-//    }
 
     @Test
     public void shoule_return_center_live_numbers_successfully(){
@@ -30,6 +24,12 @@ public class GridTest {
     }
 
 
+    @Test
+    public void shoule_return_left_top_live_numbers_successfully(){
+        int input[][] = {{0,0,0},{0,1,0},{0,1,0}};
+        int expectedResult = 1;
+        assertEquals(grid.getLiveNumber(input, 0, 0),expectedResult);
+    }
 
 
 }

@@ -19,6 +19,9 @@ public class Grid {
         int count = 0;
         for(int i=-1;i<2;i++){
             for(int j =-1;j<2;j++){
+                if(x + i < 0 || y + j < 0){
+                    continue;
+                }
                 if (i==0 && j==0) continue;
                 if(input[x+i][y+j] == 1){
                     count++;
@@ -27,4 +30,5 @@ public class Grid {
         }
         return count;
     }
+
 }
