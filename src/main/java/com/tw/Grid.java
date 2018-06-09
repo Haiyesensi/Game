@@ -15,12 +15,20 @@ public class Grid {
 
     public Grid(Cell[][] gridCell) {
 
-        if(gridCell == null || gridCell.length == 0){
+        if (gridCell == null || gridCell.length == 0) {
             throw new InputInvalidException("input is null or length == 0 !");
         }
         this.height = gridCell.length;
         this.width = gridCell[0].length;
         this.gridCell = gridCell;
+    }
+
+
+    public Grid(int amazingNum) {
+        AmazingEffectUtil amazingEffectUtil = new AmazingEffectUtil();
+        this.gridCell = amazingEffectUtil.amazing(amazingNum);
+        this.height = amazingEffectUtil.height;
+        this.width = amazingEffectUtil.width;
     }
 
     public Cell[][] getGridCell() {

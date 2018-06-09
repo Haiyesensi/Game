@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class GameFrame extends JFrame {
@@ -21,9 +22,9 @@ public class GameFrame extends JFrame {
 
     private static final int DEFAULT_DURATION = 100;
     private int duration = DEFAULT_DURATION;
-    int h = 100;
-    int w = 100;
-    Grid grid = new Grid(h, w);
+
+    int amazingNum = 1;
+    Grid grid = new Grid(amazingNum);
 
 
     public GameFrame() {
@@ -43,11 +44,21 @@ public class GameFrame extends JFrame {
     }
 
 
+    private Color randomColor() {
+        Random random = new Random();
+        int r = random.nextInt(255);
+        int g = random.nextInt(255);
+        int b = random.nextInt(255);
+        Color color = new Color(r, g, b);
+        return color;
+    }
+
     private void showGrid() {
         for (int i = 0; i < grid.gridCell.length; i++) {
             for (int j = 0; j < grid.gridCell[0].length; j++) {
                 if (grid.gridCell[i][j].getStatus() == 1) {
-                    textMatrix[i][j].setBackground(Color.BLACK);
+                    Color color = randomColor();
+                    textMatrix[i][j].setBackground(color);
                 } else {
                     textMatrix[i][j].setBackground(Color.WHITE);
                 }
