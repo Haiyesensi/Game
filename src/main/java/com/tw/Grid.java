@@ -23,6 +23,14 @@ public class Grid {
         this.gridCell = gridCell;
     }
 
+
+    public Grid(int amazingNum) {
+        AmazingEffectUtil amazingEffectUtil = new AmazingEffectUtil();
+        this.gridCell = amazingEffectUtil.amazing(amazingNum);
+        this.height = amazingEffectUtil.height;
+        this.width = amazingEffectUtil.width;
+    }
+
     public Cell[][] getGridCell() {
         return gridCell;
     }
