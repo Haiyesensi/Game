@@ -1,5 +1,6 @@
 package com.tw;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Grid {
@@ -13,6 +14,30 @@ public class Grid {
         initGrid();
     }
 
+    public Grid(Cell[][] gridCell) {
+        this.height = gridCell.length;
+        this.width = gridCell[0].length;
+        this.gridCell = gridCell;
+    }
+
+    public Cell[][] getGridCell() {
+        return gridCell;
+    }
+
+    public void setGridCell(Cell[][] gridCell) {
+        this.gridCell = gridCell;
+    }
+
+    public Cell[][] CellCopy(Cell[][] gridCell){
+        Cell[][] tempGridCell = new Cell[gridCell.length][gridCell[0].length];
+        for (int i = 0; i < gridCell.length; i++) {
+            for (int j = 0; j < gridCell[0].length; j++) {
+                tempGridCell[i][j] = new Cell(gridCell[i][j].status);
+            }
+        }
+        return tempGridCell;
+    }
+
     private void initGrid() {
         Random random = new Random();
         gridCell = new Cell[height][width];
@@ -23,33 +48,32 @@ public class Grid {
         }
     }
 
-    public int[][] nextGenerator(int[][] input) {
-        int[][] result = new int[input.length][input[0].length];
-        for (int i = 0; i < input.length; i++) {
-            for (int j = 0; j < input[0].length; j++) {
-                int liveNumbers = getLiveNumber(input, i, j);
+    public void nextGenerator() {
+        Cell[][] tempGridCell = CellCopy(gridCell);
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                int liveNumbers = getLiveNumber(i, j);
                 if (liveNumbers < 2 || liveNumbers > 3) {
-                    result[i][j] = 0;
+                    tempGridCell[i][j].status = 0;
                 } else if (liveNumbers == 3) {
-                    result[i][j] = 1;
-                } else {
-                    result[i][j] = input[i][j];
+                    tempGridCell[i][j].status = 1;
                 }
             }
         }
-        return result;
+        System.out.println(print(gridCell));
+        setGridCell(tempGridCell);
+        System.out.println(print(gridCell));
     }
 
-    public int getLiveNumber(int[][] input, int x, int y) {
-        int w = input.length;
-        int h = input[0].length;
+    public int getLiveNumber(int x, int y) {
         int count = 0;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                if (x + i < 0 || y + j < 0 || x + i > w - 1 || y + j > h - 1 || (i == 0 && j == 0)) {
+                if (x + i < 0 || y + j < 0 || x + i > height - 1 || y + j > width - 1 || (i == 0 && j == 0)) {
                     continue;
                 }
-                if (input[x + i][y + j] == 1) {
+                System.out.println(width + " " + height + " " + (i + x) + " " + (j + y));
+                if (gridCell[x + i][y + j].status == 1) {
                     count++;
                 }
             }
@@ -57,7 +81,15 @@ public class Grid {
         return count;
     }
 
-    public static void main(String[] args) {
-        Grid grid = new Grid(100, 100);
+
+    public String print(Cell[][] input) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input[0].length; j++) {
+                result.append(input[i][j].toString() + " ");
+            }
+            result.append("\n");
+        }
+        return result.toString();
     }
 }
