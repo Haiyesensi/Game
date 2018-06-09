@@ -46,12 +46,29 @@ public class AmazingEffectUtil {
         return gridCell;
     }
 
+
+    public Cell[][] amazingThree() {
+        Cell[][] gridCell = new Cell[height][width];
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (i % 2 == 0 && j > 1 && j < height - 2) {
+                    gridCell[i][j] = new Cell(1);
+                } else {
+                    gridCell[i][j] = new Cell(0);
+                }
+            }
+        }
+        return gridCell;
+    }
+
     public Cell[][] amazing(int amazingNum) {
         Cell[][] gridCell = new Cell[height][width];
         if (amazingNum == 1) {
             gridCell = amazingOne();
         } else if (amazingNum == 2) {
             gridCell = amazingTwo();
+        } else if (amazingNum == 3) {
+            gridCell = amazingThree();
         } else if (amazingNum == 1) {
             gridCell = amazingRandom();
         }
