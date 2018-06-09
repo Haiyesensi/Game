@@ -13,18 +13,17 @@ public class Grid {
         return result;
     }
 
-    public int getLiveNumber(int[][] input) {
+    public int getLiveNumber(int[][] input, int x, int y) {
         int w = input.length;
         int h = input[0].length;
         int count = 0;
-        if(input[1][0] == 1){
-            count++;
-        }
-        if(input[0][1] == 1){
-            count++;
-        }
-        if(input[1][1] == 1){
-            count++;
+        for(int i=-1;i<2;i++){
+            for(int j =-1;j<2;j++){
+                if (i==0 && j==0) continue;
+                if(input[x+i][y+j] == 1){
+                    count++;
+                }
+            }
         }
         return count;
     }
