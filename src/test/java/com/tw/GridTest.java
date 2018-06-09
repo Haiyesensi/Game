@@ -5,7 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GridTest {
-    private Grid grid = new Grid();
+    int height = 100;
+    int width = 100;
+    private Grid grid = new Grid(height, width);
 
     @Test
     public void live_number_less_than_2() {
@@ -57,4 +59,13 @@ public class GridTest {
 
     }
 
+    @Test
+    public void init_grid_and_cell_test() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                System.out.print(grid.gridCell[i][j].status);
+            }
+            System.out.println();
+        }
+    }
 }
