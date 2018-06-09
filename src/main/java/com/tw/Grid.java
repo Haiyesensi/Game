@@ -45,12 +45,10 @@ public class Grid {
                 gridCell[i][j].setLiveNeighborCount(liveNumbers);
             }
         }
-        System.out.println(print(gridCell));
         updateStatus();
-        System.out.println(print(gridCell));
     }
 
-    public void updateStatus() {
+    private void updateStatus() {
         for (int i = 0; i < gridCell.length; i++) {
             for (int j = 0; j < gridCell[0].length; j++) {
                 int liveNumbers = gridCell[i][j].getLiveNeighborCount();
@@ -70,7 +68,6 @@ public class Grid {
                 if (x + i < 0 || y + j < 0 || x + i > height - 1 || y + j > width - 1 || (i == 0 && j == 0)) {
                     continue;
                 }
-                System.out.println(width + " " + height + " " + (i + x) + " " + (j + y));
                 if (gridCell[x + i][y + j].getStatus() == 1) {
                     count++;
                 }
@@ -85,6 +82,20 @@ public class Grid {
         for (int i = 0; i < input.length; i++) {
             for (int j = 0; j < input[0].length; j++) {
                 result.append(input[i][j].toString() + " ");
+            }
+            result.append("\n");
+        }
+        return result.toString();
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < this.gridCell.length; i++) {
+            for (int j = 0; j < this.gridCell[0].length; j++) {
+
+                result.append(this.gridCell[i][j].toString() + " ");
             }
             result.append("\n");
         }
