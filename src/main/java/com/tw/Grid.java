@@ -9,7 +9,17 @@ public class Grid {
 //        this.height = h;
 //    }
     public int[][] nextGenerator(int[][] input) {
-        int[][] result = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+        int[][] result = input;
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input[0].length; j++) {
+                int liveNumbers = getLiveNumber(input, i, j);
+                if(liveNumbers < 2 || liveNumbers > 3){
+                    result[i][j] = 0;
+                }else if(liveNumbers == 3){
+                    result[i][j] = 1;
+                }
+            }
+        }
         return result;
     }
 
