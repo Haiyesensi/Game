@@ -32,4 +32,20 @@ public class GridTest {
     }
 
 
+    @Test
+    public void shoule_return_right_bottom_live_numbers_successfully(){
+        int input[][] = {{0,0,0},{0,1,0},{0,1,0}};
+        int expectedResult = 2;
+        assertEquals(grid.getLiveNumber(input, 2, 2),expectedResult);
+    }
+
+
+
+    @Test
+    public void shoule_return_right_top_live_numbers_successfully(){
+        int input[][] = {{0,0,0},{0,1,0},{0,1,0}};
+        int expectedResult = 1;
+        assertEquals(grid.getLiveNumber(input, 0, 2),expectedResult);
+    }
+
 }
