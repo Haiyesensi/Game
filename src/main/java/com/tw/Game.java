@@ -2,8 +2,8 @@ package com.tw;
 
 public class Game {
     public static void main(String[] args) throws InterruptedException {
-        int h = 10;
-        int w = 10;
+        int h = 20;
+        int w = 20;
         int sleeptime = 1000;
         if (args.length == 3) {
             h = Integer.parseInt(args[0]);
