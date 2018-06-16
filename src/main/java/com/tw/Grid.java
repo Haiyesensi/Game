@@ -1,6 +1,7 @@
 package com.tw;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.stream.IntStream.range;
 
@@ -62,15 +63,13 @@ public class Grid {
     }
 
     public int getLiveNumber(int x, int y) {
-        int count = 0;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                if (isWithinRangeAndAlive(x,y,i,j)){
-                    count++;
-                }
+        AtomicInteger count = new AtomicInteger();
+        range(-1, 2).forEach(h -> range(-1, 2).forEach(w ->{
+            if (isWithinRangeAndAlive(x,y,h,w)){
+                count.getAndIncrement();
             }
-        }
-        return count;
+        }));
+        return count.get();
     }
 
     private boolean isWithinRangeAndAlive(int x, int y, int i, int j) {
@@ -87,11 +86,10 @@ public class Grid {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < height; i++) {
-            int finalI = i;
-            range(0, width).forEach(w -> result.append(gridCell[finalI][w].toString() + " "));
-            result.append("\n");
-        }
+        range(0,height).forEach(h -> range(0, width).forEach(w -> {
+            if(w == width - 1)result.append("\n");
+            result.append(gridCell[h][w].toString() + " ");
+        }));
         return result.toString();
     }
 
